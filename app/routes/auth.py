@@ -7,7 +7,7 @@ from cerberus import Validator
 @app.route('/auth', methods=['POST'])
 def authenticate():
     if not request.json:
-        return {'message': 'Request is not JSON.'}, 500
+        return {'message': 'Request is not JSON.'}, 400
     
     schema = {
         'username': {'type': 'string', 'required': True},
@@ -17,7 +17,7 @@ def authenticate():
 
     validator = Validator(schema)
     if not validator.validate(request.json):
-        return {'message': 'Required parameters are missing!'}, 500
+        return {'message': 'Required parameters are missing!'}, 400
 
     payload = request.get_json()
     username = payload['username'].lower()
