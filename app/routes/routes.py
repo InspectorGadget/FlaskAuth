@@ -1,5 +1,4 @@
 from app import app
-from app.models.user import User
 
 @app.route('/')
 def index():
